@@ -8,35 +8,51 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>aquarium-backend</name>
+
     <properties>
         <java.version>17</java.version>
         <spring-boot.version>3.2.2</spring-boot.version>
     </properties>
+
     <dependencies>
+        <!-- Spring Boot Starter Web (version added) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-boot.version}</version>
         </dependency>
+
+        <!-- Spring Boot Starter Data JPA (version added) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring-boot.version}</version>
         </dependency>
+
+        <!-- PostgreSQL JDBC (version added) -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
+            <version>42.2.23</version> <!-- Example version, update if needed -->
             <scope>runtime</scope>
         </dependency>
+
+        <!-- Lombok (version added) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.20</version> <!-- Example version -->
             <optional>true</optional>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
+            <!-- Spring Boot Maven Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version> <!-- Use the version defined in properties -->
             </plugin>
         </plugins>
     </build>
