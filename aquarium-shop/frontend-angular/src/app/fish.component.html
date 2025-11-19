@@ -1,0 +1,22 @@
+<h2>Aquarium Fish Inventory</h2>
+
+<input placeholder="Name" [(ngModel)]="fish.name">
+<input placeholder="Species" [(ngModel)]="fish.species">
+<input placeholder="Price" type="number" [(ngModel)]="fish.price">
+<input placeholder="Stock" type="number" [(ngModel)]="fish.stockQuantity">
+<button (click)="add()">Add Fish</button>
+
+<hr>
+
+<table border="1">
+  <tr>
+    <th>Name</th><th>Species</th><th>Price</th><th>Stock</th><th>Delete</th>
+  </tr>
+  <tr *ngFor="let f of fishList">
+    <td>{{f.name}}</td>
+    <td>{{f.species}}</td>
+    <td>{{f.price}}</td>
+    <td>{{f.stockQuantity}}</td>
+    <td><button (click)="delete(f.id)">X</button></td>
+  </tr>
+</table>

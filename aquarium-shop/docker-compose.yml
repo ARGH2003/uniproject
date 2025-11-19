@@ -1,9 +1,8 @@
-version: '3.8'
+version: "3.8"
 
 services:
   postgres:
     image: postgres:15
-    container_name: aquarium_postgres
     environment:
       POSTGRES_DB: aquarium_store
       POSTGRES_USER: admin
@@ -11,26 +10,34 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     networks:
       - aquarium-net
 
-  app:
-    build: .
-    container_name: aquarium_app
-    ports:
-      - "8080:8080"
-    depends_on:
-      - postgres
+  backend:
+    build: ./backend-project
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/aquarium_store
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: admin123
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    networks:
+      - aquarium-net
+
+  frontend:
+    build: ./frontend-angular
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
     networks:
       - aquarium-net
 
 volumes:
-  postgres_data:
+  pgdata:
 
 networks:
   aquarium-net:
